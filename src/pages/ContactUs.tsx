@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast, Toaster } from "react-hot-toast";
 
 import Fieldset from "../components/Fieldset";
 import Field from "../components/Field";
 import { ContactFormSchema } from "../schema/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
 import CustomRadioField from "../components/CustomradioField";
+import CustomToast from "../components/CustomToast";
 
 type ContactFormTypes = z.infer<typeof ContactFormSchema>;
 
@@ -22,6 +24,27 @@ function ContactUs() {
 
   const onSubmit: SubmitHandler<ContactFormTypes> = (data) => {
     console.log(data);
+    // toast.success("Message Sent!", {
+    //   duration: 4000,
+    //   position: "top-center",
+
+    //   style: {
+    //     backgroundColor: "hsl(var(--clr-neutral-300))",
+    //     color: "hsl(var(--clr-neutral-100))",
+    //     padding: "1rem",
+    //   },
+    //   iconTheme: {
+    //     primary: "#000",
+    //     secondary: "#fff",
+    //   },
+
+    //   ariaProps: {
+    //     role: "status",
+    //     "aria-live": "polite",
+    //   },
+    // });
+
+    toast.custom(<CustomToast />);
   };
 
   return (
@@ -111,6 +134,7 @@ function ContactUs() {
           <Button>Submit</Button>
         </Field>
       </Fieldset>
+      <Toaster />
     </FormContainer>
   );
 }
