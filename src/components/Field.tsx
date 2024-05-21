@@ -23,7 +23,13 @@ const Container = styled.div<StyledContainerProps>`
   flex-direction: ${(props) => (props.row ? "row" : "column")};
   gap: 0.625rem;
 `;
-const Label = styled.label``;
+const Label = styled.label`
+  @media screen and (max-width: 26.5625em) {
+    & {
+      font-size: 0.825rem;
+    }
+  }
+`;
 const Error = styled.span`
   margin-block-start: 0.5rem;
   display: block;

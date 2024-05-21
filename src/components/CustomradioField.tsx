@@ -15,7 +15,7 @@ const Container = styled.div`
   display: flex;
   gap: 0.4rem;
   align-items: center;
-  border: 1px solid black;
+  border: 0.2px solid hsl(var(--clr-neutral-300));
   border-radius: 5px;
 
   & > input:checked {
@@ -24,6 +24,11 @@ const Container = styled.div`
 `;
 const Label = styled.label`
   cursor: pointer;
+  @media screen and (max-width: 26.5625em) {
+    & {
+      font-size: 0.825rem;
+    }
+  }
 `;
 
 export default CustomRadioField;
