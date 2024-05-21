@@ -4,12 +4,7 @@ function CustomToast() {
   return (
     <ToastContainer role="status" aria-label="message sent success">
       <ToastTitle>
-        <img
-          style={{ display: "inline" }}
-          src="/icon-success-check.svg"
-          width={20}
-          height={20}
-        />
+        <img src="/icon-success-check.svg" width={20} height={20} />
         <Toastspan>Message Sent!</Toastspan>
       </ToastTitle>
 
