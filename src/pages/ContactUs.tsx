@@ -128,7 +128,9 @@ const FormContainer = styled.form`
   border-radius: 10px;
 
   @media screen and (max-width: 40em) {
-    padding: 1rem;
+    & {
+      padding: 1rem;
+    }
   }
 `;
 const RowContainer = styled.div`
