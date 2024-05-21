@@ -16,3 +16,9 @@ export type FieldPropsTypes = {
 export type StyledContainerProps = {
   row?: boolean;
 };
+
+export type CustomRadioFieldProps = {
+  label?: string;
+  htmlFor?: string;
+  children: React.ReactNode;
+};

@@ -1,45 +1,29 @@
 import styled from "@emotion/styled";
-import { FieldPropsTypes, StyledContainerProps } from "../types/types";
+import { CustomRadioFieldProps } from "../types/types";
 
-function CustomRadioField({
-  label,
-  htmlFor,
-  error,
-  row,
-  children,
-}: FieldPropsTypes) {
+function CustomRadioField({ label, htmlFor, children }: CustomRadioFieldProps) {
   return (
-    <div>
-      <Container row={row}>
-        {label && !row && (
-          <Label htmlFor={htmlFor}>
-            {label} <Starspan>*</Starspan>
-          </Label>
-        )}
-        {children}
-        {label && row && <Label htmlFor={htmlFor}>{label}</Label>}
-      </Container>
-      {error && <Error role="alert">{error}</Error>}
-    </div>
+    <Container className="custom-radio-field">
+      {children}
+      {label && <Label htmlFor={htmlFor}>{label}</Label>}
+    </Container>
   );
 }
 
-const Container = styled.div<StyledContainerProps>`
+const Container = styled.div`
   padding: 0.5rem 1rem;
   display: flex;
-  flex-direction: ${(props) => (props.row ? "row" : "column")};
   gap: 0.4rem;
   align-items: center;
   border: 1px solid black;
   border-radius: 5px;
+
+  & > input:checked {
+    background-color: hsl(var(--clr-primary-100));
+  }
 `;
-const Label = styled.label``;
-const Error = styled.span`
-  display: block;
-  color: hsl(var(--clr-primary-failure));
-`;
-const Starspan = styled.span`
-  color: hsl(var(--clr-primary-success));
+const Label = styled.label`
+  cursor: pointer;
 `;
 
 export default CustomRadioField;

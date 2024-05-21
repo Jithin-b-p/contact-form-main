@@ -120,6 +120,7 @@ body {
 
 #root {
   width: inherit;
+  padding-block: 2rem;
   min-height: inherit;
   display: flex;
   justify-content: center;
@@ -134,4 +135,14 @@ textarea {
   padding: 0.5rem 1rem;
   border: 0.2px solid hsl(var(--clr-neutral-300));
   border-radius: 5px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: hsl(var(--clr-primary-success));
+}
+
+.custom-radio-field:has(input[type="radio"]:checked) {
+  background-color: hsl(var(--clr-primary-100));
+  border-color: hsl(var(--clr-primary-success));
 }

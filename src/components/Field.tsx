@@ -25,6 +25,7 @@ const Container = styled.div<StyledContainerProps>`
 `;
 const Label = styled.label``;
 const Error = styled.span`
+  margin-block-start: 0.5rem;
   display: block;
   color: hsl(var(--clr-primary-failure));
 `;

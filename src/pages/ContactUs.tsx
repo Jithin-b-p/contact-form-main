@@ -66,13 +66,8 @@ function ContactUs() {
           />
         </Field>
         <Field label="Query Type" error={errors.querytype?.message}>
-          {/* <span></span> */}
           <RowContainer>
-            <CustomRadioField
-              label="General Enquiry"
-              htmlFor="generalenquiry"
-              row={true}
-            >
+            <CustomRadioField label="General Enquiry" htmlFor="generalenquiry">
               <input
                 id="generalenquiry"
                 type="radio"
@@ -80,11 +75,7 @@ function ContactUs() {
                 value="generalenquiry"
               />
             </CustomRadioField>
-            <CustomRadioField
-              label="Support Request"
-              htmlFor="supportrequest"
-              row={true}
-            >
+            <CustomRadioField label="Support Request" htmlFor="supportrequest">
               <input
                 id="supportrequest"
                 type="radio"
@@ -113,16 +104,11 @@ function ContactUs() {
           row={true}
           error={errors.consent?.message}
         >
-          <input
-            id="consent"
-            type="checkbox"
-            {...register("consent")}
-            value="true"
-          />
+          <input id="consent" type="checkbox" {...register("consent")} />
         </Field>
 
         <Field>
-          <button>Submit</button>
+          <Button>Submit</Button>
         </Field>
       </Fieldset>
     </FormContainer>
@@ -130,7 +116,7 @@ function ContactUs() {
 }
 
 const FormContainer = styled.form`
-  width: min(90%, 50rem);
+  width: min(90%, 40rem);
   padding: 2rem;
   background: hsl(var(--clr-neutral-100));
   border-radius: 10px;
@@ -159,5 +145,20 @@ const Input = styled.input<{ error: boolean }>`
 const Textarea = styled.textarea<{ error: boolean }>`
   border-color: ${(props) =>
     props.error ? "hsl(var(--clr-primary-failure))" : "black"};
+`;
+
+const Button = styled.button`
+  padding: 1rem;
+  font-weight: var(--fw-bold);
+  background-color: hsl(var(--clr-primary-success));
+  color: hsl(var(--clr-neutral-100));
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  transition: all 0.3s;
+
+  :hover {
+    background-color: hsl(171, 83%, 14%);
+  }
 `;
 export default ContactUs;
