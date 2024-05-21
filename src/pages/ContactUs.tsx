@@ -1,65 +1,135 @@
 import styled from "@emotion/styled";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { SubmitHandler } from "react-hook-form";
 
 import Fieldset from "../components/Fieldset";
 import Field from "../components/Field";
+import { ContactFormSchema } from "../schema/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import CustomRadioField from "../components/CustomradioField";
+
+type ContactFormTypes = z.infer<typeof ContactFormSchema>;
 
 function ContactUs() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactFormTypes>({
+    resolver: zodResolver(ContactFormSchema),
+  });
+
+  const onSubmit: SubmitHandler<ContactFormTypes> = (data) => {
+    console.log(data);
+  };
+
   return (
-    <Container>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <Fieldset legend="Contact Us">
         <RowContainer>
-          <Field label="First Name" htmlFor="firstname">
-            <input id="firstname" type="text" name="firstname" />
+          <Field
+            label="First Name"
+            htmlFor="firstname"
+            error={errors.firstname?.message}
+          >
+            <Input
+              error={!!errors.firstname}
+              {...register("firstname")}
+              id="firstname"
+              type="text"
+            />
           </Field>
-          <Field label="Second Name" htmlFor="secondname">
-            <input id="secondname" type="text" name="secondname" />
+          <Field
+            label="Last Name"
+            htmlFor="lastname"
+            error={errors.lastname?.message}
+          >
+            <Input
+              error={!!errors.lastname}
+              id="lastname"
+              type="text"
+              {...register("lastname")}
+            />
           </Field>
         </RowContainer>
-        <Field label="Email Address" htmlFor="email">
-          <input id="email" type="text" name="email" />
+        <Field
+          label="Email Address"
+          htmlFor="email"
+          error={errors.email?.message}
+        >
+          <Input
+            error={!!errors.email}
+            id="email"
+            type="text"
+            {...register("email")}
+          />
         </Field>
-        <RadioContainer>
-          <span>Query Type</span>
+        <Field label="Query Type" error={errors.querytype?.message}>
+          {/* <span></span> */}
           <RowContainer>
-            <Field label="General Enquiry" htmlFor="generalenquiry" row={true}>
+            <CustomRadioField
+              label="General Enquiry"
+              htmlFor="generalenquiry"
+              row={true}
+            >
               <input
                 id="generalenquiry"
                 type="radio"
-                name="querytype"
+                {...register("querytype")}
                 value="generalenquiry"
               />
-            </Field>
-            <Field label="Support Request" htmlFor="supportrequest" row={true}>
+            </CustomRadioField>
+            <CustomRadioField
+              label="Support Request"
+              htmlFor="supportrequest"
+              row={true}
+            >
               <input
                 id="supportrequest"
                 type="radio"
-                name="querytype"
+                {...register("querytype")}
                 value="supportrequest"
               />
-            </Field>
+            </CustomRadioField>
           </RowContainer>
-        </RadioContainer>
-        <Field label="Message" htmlFor="message">
-          <textarea id="message" name="message"></textarea>
+        </Field>
+        <Field
+          label="Message"
+          htmlFor="message"
+          error={errors.message?.message}
+        >
+          <Textarea
+            error={!!errors.message}
+            id="message"
+            {...register("message")}
+            draggable={false}
+          ></Textarea>
         </Field>
 
         <Field
-          label="I consent to being contacted by the team"
+          label="I consent to being contacted by the team *"
           htmlFor="consent"
           row={true}
+          error={errors.consent?.message}
         >
-          <input id="consent" type="checkbox" name="consent" value="true" />
+          <input
+            id="consent"
+            type="checkbox"
+            {...register("consent")}
+            value="true"
+          />
         </Field>
 
         <Field>
           <button>Submit</button>
         </Field>
       </Fieldset>
-    </Container>
+    </FormContainer>
   );
 }
 
-const Container = styled.section`
+const FormContainer = styled.form`
   width: min(90%, 50rem);
   padding: 2rem;
   background: hsl(var(--clr-neutral-100));
@@ -74,9 +144,20 @@ const RowContainer = styled.div`
     flex-basis: 50%;
   }
 `;
-const RadioContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const Input = styled.input<{ error: boolean }>`
+  border-color: ${(props) =>
+    props.error ? "hsl(var(--clr-primary-failure))" : "black"};
+
+  :hover {
+    border-color: ${(props) =>
+      props.error
+        ? "hsl(var(--clr-primary-failure))"
+        : "hsl(var(--clr-primary-success))"};
+  }
 `;
 
+const Textarea = styled.textarea<{ error: boolean }>`
+  border-color: ${(props) =>
+    props.error ? "hsl(var(--clr-primary-failure))" : "black"};
+`;
 export default ContactUs;

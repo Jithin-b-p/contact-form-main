@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
 import { FieldPropsTypes, StyledContainerProps } from "../types/types";
 
-function Field({ label, htmlFor, error, row, children }: FieldPropsTypes) {
+function CustomRadioField({
+  label,
+  htmlFor,
+  error,
+  row,
+  children,
+}: FieldPropsTypes) {
   return (
     <div>
       <Container row={row}>
@@ -19,9 +25,13 @@ function Field({ label, htmlFor, error, row, children }: FieldPropsTypes) {
 }
 
 const Container = styled.div<StyledContainerProps>`
+  padding: 0.5rem 1rem;
   display: flex;
   flex-direction: ${(props) => (props.row ? "row" : "column")};
-  gap: 0.625rem;
+  gap: 0.4rem;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 const Label = styled.label``;
 const Error = styled.span`
@@ -32,4 +42,4 @@ const Starspan = styled.span`
   color: hsl(var(--clr-primary-success));
 `;
 
-export default Field;
+export default CustomRadioField;

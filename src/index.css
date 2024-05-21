@@ -126,9 +126,12 @@ body {
   align-items: center;
 }
 
+textarea {
+  resize: none;
+}
 input,
 textarea {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: 0.2px solid hsl(var(--clr-neutral-300));
   border-radius: 5px;
 }

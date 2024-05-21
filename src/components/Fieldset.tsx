@@ -14,6 +14,7 @@ const Container = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding-block-start: 1.5rem;
   border: 0;
 `;
 const Legend = styled.legend`
