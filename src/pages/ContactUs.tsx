@@ -126,6 +126,10 @@ const FormContainer = styled.form`
   padding: 2rem;
   background: hsl(var(--clr-neutral-100));
   border-radius: 10px;
+
+  @media screen and (max-width: 40em) {
+    padding: 1rem;
+  }
 `;
 const RowContainer = styled.div`
   display: flex;
@@ -155,6 +159,13 @@ const Input = styled.input<{ error: boolean }>`
 const Textarea = styled.textarea<{ error: boolean }>`
   border-color: ${(props) =>
     props.error ? "hsl(var(--clr-primary-failure))" : "black"};
+
+  height: 8rem;
+  max-width: 100%;
+
+  @media screen and (max-height: 40em) {
+    height: 12rem;
+  }
 `;
 
 const Button = styled.button`

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 function CustomToast() {
   return (
-    <ToastContainer>
+    <ToastContainer role="status" aria-label="message sent success">
       <ToastTitle>
         <img
           style={{ display: "inline" }}
