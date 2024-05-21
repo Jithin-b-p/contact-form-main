@@ -17,6 +17,7 @@ function ContactUs() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactFormTypes>({
     resolver: zodResolver(ContactFormSchema),
@@ -24,27 +25,8 @@ function ContactUs() {
 
   const onSubmit: SubmitHandler<ContactFormTypes> = (data) => {
     console.log(data);
-    // toast.success("Message Sent!", {
-    //   duration: 4000,
-    //   position: "top-center",
-
-    //   style: {
-    //     backgroundColor: "hsl(var(--clr-neutral-300))",
-    //     color: "hsl(var(--clr-neutral-100))",
-    //     padding: "1rem",
-    //   },
-    //   iconTheme: {
-    //     primary: "#000",
-    //     secondary: "#fff",
-    //   },
-
-    //   ariaProps: {
-    //     role: "status",
-    //     "aria-live": "polite",
-    //   },
-    // });
-
     toast.custom(<CustomToast />);
+    reset();
   };
 
   return (
@@ -152,6 +134,10 @@ const RowContainer = styled.div`
 
   & div {
     flex-basis: 50%;
+  }
+
+  @media screen and (max-width: 40em) {
+    flex-direction: column;
   }
 `;
 const Input = styled.input<{ error: boolean }>`
